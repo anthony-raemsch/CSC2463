@@ -38,3 +38,9 @@ function draw()
   fill('black');
   square(0, 450, 50);
 }
+
+/*
+Notes:
+  Create a color pallete class.
+  Add selectedColor circle (see Class04 for details)
+*/
