@@ -1,23 +1,33 @@
 function setup() {
   createCanvas(600, 600);
   colorMode(HSB, 360, 100, 100);
+  angleMode(DEGREES);
 }
 
 function draw() {
   background(220);
+
   noStroke();
   fill('black');
   circle(100, 300, 100);
 
+  fill(280, 90, 40);
+  circle(150, 150, 50);
+
+  stroke(280, 90, 40);
+  strokeWeight(25);
+  line(200, 200, 400, 400);
+
   stroke(0);
   strokeWeight(2);
-  fill('yellow');
-  arc(300, 300, 200, 200, - 3 * PI / 4, 3 * PI / 4, PIE);
+  fill(0, 100, 50, 1);
+  // noFill();
+  arc(300, 300, 200, 200, -45, 90, PIE);
 
-  fill(0, 100, 50, 0.5);
   beginShape();
     vertex(450, 200);
     vertex(500, 50);
     vertex(550, 200);
+    vertex(500, 350);
   endShape(CLOSE);
 }
