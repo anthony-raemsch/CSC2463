@@ -1,5 +1,3 @@
-let face;
-let face2;
 let selectedColor;
 let faces;
 
@@ -11,10 +9,9 @@ function setup()
 
   faces =
   [
-    new Face(200, 200, color('orange')),
-    new Face(50, 50, color('black')),
+    new Face(200, 150, color('blue')),
+    new Face(50, 50, color('orange')),
     new Face(100, 250, color('purple')),
-    new Face(300, 450, color('yellow'))
   ];
 }
 
@@ -65,11 +62,11 @@ class Face
     fill(this.fill);
     square(this.x, this.y, 100);
     
-    fill(255);
+    fill(0);
     circle(this.x + 20, this.y + 20, 10);
     circle(this.x + 80, this.y + 20, 10);
 
-    stroke(255);
+    stroke(0);
     line(this.x + 20, this.y + 50, this.x + 80, this.y + 50);
   }
 
