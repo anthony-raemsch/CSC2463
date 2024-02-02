@@ -9,7 +9,13 @@ function setup()
 
   selectedColor = color('white');
 
-  faces = [new Face(200, 200, color('orange')), new Face(50, 50, color('black')), new Face(100, 250, color('purple')), new Face(300, 450, color('yellow'))];
+  faces =
+  [
+    new Face(200, 200, color('orange')),
+    new Face(50, 50, color('black')),
+    new Face(100, 250, color('purple')),
+    new Face(300, 450, color('yellow'))
+  ];
 }
 
 function draw()
@@ -56,7 +62,6 @@ class Face
 
   draw()
   {
-    noStroke();
     fill(this.fill);
     square(this.x, this.y, 100);
     
