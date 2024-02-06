@@ -1,11 +1,63 @@
-let selectedColor;
+class Color
+{
+    constructor (x, y, diameter, fill)
+    {
+        this.fill = fill;
+        this.x = x;
+        this.y = y;
+        this.diameter = diameter;
+    }
+
+    contains(x, y)
+    {
+        insideX = x >= this.x && x <= this.x + 50;
+        insideY = y >= this.y && y <= this.y + 50;
+
+        return insideX && insideY;
+    }
+
+    draw()
+    {
+        fill(this.fill);
+        square(this.x, this.y, this.diameter);
+    }
+}
+
 let colorPallete;
-let x;
-let y;
+
+function draw()
+{
+    background(255);
+
+    for (i = 0; i < colorPallete.length; i++)
+    {
+        colorPallete[i].draw();
+    }
+
+    fill(selectedColor);
+    circle(width - 30, 30, 20);
+}
+
+let i;
 let insideX;
 let insideY;
 let isInColor;
-let i;
+
+function mousePressed()
+{
+    isInColor = false;
+
+    for (i = 0; i < colorPallete.length; i++)
+    {
+        if (colorPallete[i].contains(mouseX, mouseY))
+        {
+            selectedColor = colorPallete[i].fill;
+            isInColor = true;
+        }
+    }
+}
+
+let selectedColor;
 
 function setup()
 {
@@ -28,54 +80,5 @@ function setup()
     selectedColor = color('white');
 }
 
-function draw()
-{
-    background(255);
-
-    for (i = 0; i < colorPallete.length; i++)
-    {
-        colorPallete[i].draw();
-    }
-
-    fill(selectedColor);
-    circle(width - 30, 30, 20);
-}
-
-function mousePressed()
-{
-    isInColor = false;
-
-    for (i = 0; i < colorPallete.length; i++)
-    {
-        if (colorPallete[i].contains(mouseX, mouseY))
-        {
-            selectedColor = colorPallete[i].fill;
-            isInColor = true;
-        }
-    }
-}
-
-class Color
-{
-    constructor (x, y, diameter, fill)
-    {
-        this.fill = fill;
-        this.x = x;
-        this.y = y;
-        this.diameter = diameter;
-    }
-
-    draw()
-    {
-        fill(this.fill);
-        square(this.x, this.y, this.diameter);
-    }
-
-    contains(x, y)
-    {
-        insideX = x >= this.x && x <= this.x + 50;
-        insideY = y >= this.y && y <= this.y + 50;
-
-        return insideX && insideY;
-    }
-}
+let x;
+let y;
