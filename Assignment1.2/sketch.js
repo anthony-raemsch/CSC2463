@@ -36,12 +36,28 @@ function draw()
 
     fill(selectedColor);
     circle(width - 30, 30, 20);
+
+    beginShape();
+        for (i = 0; i < points.length; i++)
+        {
+            one_point = points[i];
+            curveVertex(one_point.x, one_point.y);
+        }
+    endShape();
 }
 
 let i;
 let insideX;
 let insideY;
 let isInColor;
+
+function mouseDragged()
+{
+    one_point.x = pmouseX;
+    one_point.y = pmouseY;
+
+    points.push(one_point);
+}
 
 function mousePressed()
 {
@@ -57,11 +73,13 @@ function mousePressed()
     }
 }
 
+let one_point = {};
+let points = [];
 let selectedColor;
 
 function setup()
 {
-    createCanvas(725, 750);
+    createCanvas(2515, 1337);
 
     colorPallete =
     [
