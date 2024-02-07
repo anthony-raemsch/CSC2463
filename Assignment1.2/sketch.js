@@ -1,98 +1,62 @@
-class Color
+let colorSpectrum;
+let selectedColor;
+let sizeOfSquare;
+let drawing;
+let previousX;
+let previousY;
+let dex;
+let i;
+
+function setup()
 {
-    constructor (x, y, diameter, fill)
-    {
-        this.fill = fill;
-        this.x = x;
-        this.y = y;
-        this.diameter = diameter;
-    }
-
-    contains(x, y)
-    {
-        insideX = x >= this.x && x <= this.x + 50;
-        insideY = y >= this.y && y <= this.y + 50;
-
-        return insideX && insideY;
-    }
-
-    draw()
-    {
-        fill(this.fill);
-        square(this.x, this.y, this.diameter);
-    }
+    createCanvas(2400, 1700);
+    colorPalleteDrew();
 }
 
-let colorPallete;
+    colorSpectrum = ['#FF0000', '#FFA500', '#FFFF00', '#00FF00', '#00FFFF', '#0000FF', '#800080', '#A52A2A', '#FFFFFF', '#000000'];
+    selectedColor = colorSpectrum[0];
+    sizeOfSquare = 35;
+    drawing = false;
 
 function draw()
 {
-    background(255);
-
-    for (i = 0; i < colorPallete.length; i++)
+    if (drawing)
     {
-        colorPallete[i].draw();
+        strokeWeight(5);
+        stroke(color(selectedColor));
+        line(previousX, previousY, mouseX, mouseY);
     }
-
-    beginShape();
-        for (var i in points)
-        {
-            var one_point = points[i];
-            curveVertex(one_point.x, one_point.y);
-        }
-    endShape();
 }
 
-let insideX;
-let insideY;
-let isInColor;
-
-function mouseDragged()
+function mouseClicked()
 {
-    var one_point = {};
-    one_point.x = pmouseX;
-    one_point.y = pmouseY;
-
-    points.push(one_point);
+    if (mouseX > 10 && mouseX < sizeOfSquare + 10 && mouseY > 0 && mouseY < colorSpectrum.length * sizeOfSquare)
+    {
+        dex = Math.floor(mouseY / sizeOfSquare);
+        selectedColor = colorSpectrum[dex];
+    }
 }
 
 function mousePressed()
 {
-    isInColor = false;
-
-    for (i = 0; i < colorPallete.length; i++)
+    if (mouseX > sizeOfSquare && mouseX < width && mouseY > 0 && mouseY < height)
     {
-        if (colorPallete[i].contains(mouseX, mouseY))
-        {
-            selectedColor = colorPallete[i].fill;
-            isInColor = true;
-        }
+        drawing = true;
+        previousX = mouseX;
+        previousY = mouseY;
     }
 }
 
-let points;
-let selectedColor;
-
-function setup()
+function releaseMouse()
 {
-    createCanvas(400, 400);
-
-    colorPallete =
-    [
-        new Color(0, 0, 30, color('red')),
-        new Color(0, 30, 30, color('orange')),
-        new Color(0, 60, 30, color('yellow')),
-        new Color(0, 90, 30, color('green')),
-        new Color(0, 120, 30, color('cyan')),
-        new Color(0, 150, 30, color('blue')),
-        new Color(0, 180, 30, color('magenta')),
-        new Color(0, 210, 30, color('brown')),
-        new Color(0, 240, 30, color('white')),
-        new Color(0, 270, 30, color('black'))
-    ];
-
-    points = [];
+    drawing = false;
 }
 
-let x;
-let y;
+function colorPalleteDrew()
+{
+    for (i = 0; i < colorSpectrum.length; i++)
+    {
+        fill(color(colorSpectrum[i]));
+        rect(10, i * sizeOfSquare, sizeOfSquare, sizeOfSquare);
+    }
+}
