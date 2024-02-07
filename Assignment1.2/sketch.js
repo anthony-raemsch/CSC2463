@@ -75,7 +75,7 @@ let selectedColor;
 
 function setup()
 {
-    createCanvas(2515, 1337);
+    createCanvas(400, 400);
 
     colorPallete =
     [
