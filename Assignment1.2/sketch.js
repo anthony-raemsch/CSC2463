@@ -34,25 +34,22 @@ function draw()
         colorPallete[i].draw();
     }
 
-    fill(selectedColor);
-    circle(width - 30, 30, 20);
-
     beginShape();
-        for (i = 0; i < points.length; i++)
+        for (var i in points)
         {
-            one_point = points[i];
+            var one_point = points[i];
             curveVertex(one_point.x, one_point.y);
         }
     endShape();
 }
 
-let i;
 let insideX;
 let insideY;
 let isInColor;
 
 function mouseDragged()
 {
+    var one_point = {};
     one_point.x = pmouseX;
     one_point.y = pmouseY;
 
@@ -73,8 +70,7 @@ function mousePressed()
     }
 }
 
-let one_point = {};
-let points = [];
+let points;
 let selectedColor;
 
 function setup()
@@ -95,7 +91,7 @@ function setup()
         new Color(0, 450, 50, color('black'))
     ];
 
-    selectedColor = color('white');
+    points = [];
 }
 
 let x;
