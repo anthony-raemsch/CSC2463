@@ -79,16 +79,16 @@ function setup()
 
     colorPallete =
     [
-        new Color(0, 0, 50, color('red')),
-        new Color(0, 50, 50, color('orange')),
-        new Color(0, 100, 50, color('yellow')),
-        new Color(0, 150, 50, color('green')),
-        new Color(0, 200, 50, color('cyan')),
-        new Color(0, 250, 50, color('blue')),
-        new Color(0, 300, 50, color('magenta')),
-        new Color(0, 350, 50, color('brown')),
-        new Color(0, 400, 50, color('white')),
-        new Color(0, 450, 50, color('black'))
+        new Color(0, 0, 30, color('red')),
+        new Color(0, 30, 30, color('orange')),
+        new Color(0, 60, 30, color('yellow')),
+        new Color(0, 90, 30, color('green')),
+        new Color(0, 120, 30, color('cyan')),
+        new Color(0, 150, 30, color('blue')),
+        new Color(0, 180, 30, color('magenta')),
+        new Color(0, 210, 30, color('brown')),
+        new Color(0, 240, 30, color('white')),
+        new Color(0, 270, 30, color('black'))
     ];
 
     points = [];
