@@ -2,7 +2,7 @@ function draw()
 {
   background(lastAttempt);
 
-  if(gameOver)
+  if (gameOver)
   {
     gameDone();
   }
@@ -13,6 +13,8 @@ function draw()
   }
 }
 
+let fail;
+
 function gameDone()
 {
   text("Time's Up!", 100, 100);
@@ -20,6 +22,7 @@ function gameDone()
   text("Press Space to Play Again.", 100, 200);
 }
 
+let gameFont;
 let gameOver = false;
 
 function keyTyped()
@@ -51,14 +54,15 @@ function keyTyped()
 }
 
 let lastAttempt;
-let mickey;
+let mike;
+let normal;
 
 function playing()
 {
   push();
     translate(width / 2, height / 2);
-    rotate(rotation+= speed);
-    image(mickey, 0, 0, mickey.width / 3, mickey.height / 3);
+    rotate(rotation += speed);
+    image(mike, 0, 0, mike.width / 3, mike.height / 3);
   pop();
 
   if (rotation >= 360)
@@ -68,36 +72,40 @@ function playing()
 
   textSize(16);
   text("Score: " + score, 20, 20);
-  text("Time: " + ceil(timeRemaining), width - 100, 20);
+  text("Time: " + ceil(timeRemaining), width - 150, 20);
 
   timeRemaining -= deltaTime / 1000;
 
   if (timeRemaining < 0)
   {
+    lastAttempt = normal;
     gameOver = true;
   }
 }
 
 function preload()
 {
-  mickey = loadImage('assets/mickey_the_mouse.jpg');
+  mike = loadImage("assets/mike.png");
+  gameFont = loadFont("assets/PressStart2P-Regular.ttf");
 }
 
 let rotation = 0;
 let score = 0;
 
-function setup() 
+function setup()
 {
-  createCanvas(400, 400);
+  createCanvas(2519, 1338);
   imageMode(CENTER);
   angleMode(DEGREES);
 
-  success = color('blue');
+  success = color('green');
   fail = color('red');
-  normal = color('white');
+  normal = color('black');
   lastAttempt = normal;
+
+  textFont(gameFont);
 }
 
-let speed = 16;
-let success, fail, normal;
+let speed = 3;
+let success;
 let timeRemaining = 15;
