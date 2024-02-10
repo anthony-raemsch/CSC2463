@@ -34,6 +34,16 @@ function draw()
   {
     stop();
   }
+
+  if (sprite.x + sprite.width / 4 > width)
+  {
+    walkLeft();
+  }
+
+  else if (sprite.x - sprite.width / 4 < 0)
+  {
+    walkRight();
+  }
 }
 
 function keyTypedOld()
@@ -60,53 +70,53 @@ function keyTypedOld()
 
 function preload()
 {
-  robot = new Sprite(200, 200, 80, 80);
-  robot.spriteSheet = 'assets/robot.png';
-  robot.anis.frameDelay = 8;
-  robot.addAnis(animations);
-  robot.changeAni('stand');
+  sprite = new Sprite(200, 200, 80, 80);
+  sprite.spriteSheet = 'assets/cyclops.png';
+  sprite.anis.frameDelay = 8;
+  sprite.addAnis(animations);
+  sprite.changeAni('walkRight');
 }
-
-let robot;
 
 function setup()
 {
-  createCanvas(400, 400);
+  createCanvas(2519, 1339);
 }
+
+let sprite;
 
 function stop()
 {
-  robot.vel.x = 0;
-  robot.vel.y = 0;
-  robot.changeAni('stand');
+  sprite.vel.x = 0;
+  sprite.vel.y = 0;
+  sprite.changeAni('stand');
 }
 
 function walkDown()
 {
-  robot.changeAni('walkDown');
-  robot.vel.y = 1;
-  robot.vel.x = 0;
+  sprite.changeAni('walkDown');
+  sprite.vel.y = 1;
+  sprite.vel.x = 0;
 }
 
 function walkLeft()
 {
-  robot.changeAni('walkRight');
-  robot.vel.x = -1;
-  robot.scale.x = -1;
-  robot.vel.y = 0;
+  sprite.changeAni('walkRight');
+  sprite.vel.x = -1;
+  sprite.scale.x = -1;
+  sprite.vel.y = 0;
 }
 
 function walkRight()
 {
-  robot.changeAni('walkRight');
-  robot.vel.x = 1;  
-  robot.scale.x = 1;
-  robot.vel.y = 0;
+  sprite.changeAni('walkRight');
+  sprite.vel.x = 1;  
+  sprite.scale.x = 1;
+  sprite.vel.y = 0;
 }
 
 function walkUp()
 {
-  robot.changeAni('walkUp');
-  robot.vel.y = -1;
-  robot.vel.x = 0;
+  sprite.changeAni('walkUp');
+  sprite.vel.y = -1;
+  sprite.vel.x = 0;
 }
