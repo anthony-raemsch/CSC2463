@@ -35,19 +35,29 @@ function draw()
     stop();
   }
 
-  if (sprite.x + sprite.width / 4 > width)
+  if (green.x + green.width / 4 > width)
   {
     walkLeft();
   }
 
-  else if (sprite.x - sprite.width / 4 < 0)
+  else if (green.x - green.width / 4 < 0)
+  {
+    walkRight();
+  }
+
+  if (ninja.x + ninja.width / 4 > width)
+  {
+    walkLeft();
+  }
+
+  else if (ninja.x - ninja.width / 4 < 0)
   {
     walkRight();
   }
 }
 
 let green;
-// let ninja;
+let ninja;
 
 function preload()
 {
@@ -57,11 +67,11 @@ function preload()
   green.addAnis(animations);
   green.changeAni('stand');
 
-  // ninja = new Sprite(200, 200, 80, 80);
-  // ninja.spriteSheet = 'assets/ninja.png';
-  // ninja.anis.frameDelay = 8;
-  // ninja.addAnis(animations);
-  // ninja.changeAni('stand');
+  ninja = new Sprite(200, 200, 80, 80);
+  ninja.spriteSheet = 'assets/ninja.png';
+  ninja.anis.frameDelay = 8;
+  ninja.addAnis(animations);
+  ninja.changeAni('stand');
 
   // spelunky = new Sprite(200, 200, 80, 80);
   // spelunky.spriteSheet = 'assets/spelunky.png';
@@ -79,9 +89,13 @@ function setup()
 
 function stop()
 {
+  green.changeAni('stand');
   green.vel.x = 0;
   green.vel.y = 0;
-  green.changeAni('stand');
+
+  ninja.changeAni('stand');
+  ninja.vel.x = 0;
+  ninja.vel.y = 0;
 }
 
 function walkDown()
@@ -89,6 +103,10 @@ function walkDown()
   green.changeAni('walkDown');
   green.vel.y = 1;
   green.vel.x = 0;
+
+  ninja.changeAni('walkDown');
+  ninja.vel.y = 1;
+  ninja.vel.x = 0;
 }
 
 function walkLeft()
@@ -97,6 +115,11 @@ function walkLeft()
   green.vel.x = -1;
   green.scale.x = -1;
   green.vel.y = 0;
+
+  ninja.changeAni('walkRight');
+  ninja.vel.x = -1;
+  ninja.scale.x = -1;
+  ninja.vel.y = 0;
 }
 
 function walkRight()
@@ -105,6 +128,11 @@ function walkRight()
   green.vel.x = 1;  
   green.scale.x = 1;
   green.vel.y = 0;
+
+  ninja.changeAni('walkRight');
+  ninja.vel.x = 1;  
+  ninja.scale.x = 1;
+  ninja.vel.y = 0;
 }
 
 function walkUp()
@@ -112,4 +140,8 @@ function walkUp()
   green.changeAni('walkUp');
   green.vel.y = -1;
   green.vel.x = 0;
+
+  ninja.changeAni('walkUp');
+  ninja.vel.y = -1;
+  ninja.vel.x = 0;
 }
