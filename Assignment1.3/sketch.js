@@ -54,6 +54,16 @@ function draw()
   {
     walkRight();
   }
+
+  if (spelunky.x + spelunky.width / 4 > width)
+  {
+    walkLeft();
+  }
+
+  else if (spelunky.x - spelunky.width / 4 < 0)
+  {
+    walkRight();
+  }
 }
 
 let green;
@@ -73,11 +83,11 @@ function preload()
   ninja.addAnis(animations);
   ninja.changeAni('stand');
 
-  // spelunky = new Sprite(200, 200, 80, 80);
-  // spelunky.spriteSheet = 'assets/spelunky.png';
-  // spelunky.anis.frameDelay = 8;
-  // spelunky.addAnis(animations);
-  // spelunky.changeAni('stand');
+  spelunky = new Sprite(200, 200, 80, 80);
+  spelunky.spriteSheet = 'assets/spelunky.png';
+  spelunky.anis.frameDelay = 8;
+  spelunky.addAnis(animations);
+  spelunky.changeAni('stand');
 }
 
 function setup()
@@ -85,7 +95,7 @@ function setup()
   createCanvas(2519, 1338);
 }
 
-// let spelunky;
+let spelunky;
 
 function stop()
 {
@@ -96,6 +106,10 @@ function stop()
   ninja.changeAni('stand');
   ninja.vel.x = 0;
   ninja.vel.y = 0;
+
+  spelunky.changeAni('stand');
+  spelunky.vel.x = 0;
+  spelunky.vel.y = 0;
 }
 
 function walkDown()
@@ -107,6 +121,10 @@ function walkDown()
   ninja.changeAni('walkDown');
   ninja.vel.y = 1;
   ninja.vel.x = 0;
+
+  spelunky.changeAni('walkDown');
+  spelunky.vel.y = 1;
+  spelunky.vel.x = 0;
 }
 
 function walkLeft()
@@ -120,6 +138,11 @@ function walkLeft()
   ninja.vel.x = -1;
   ninja.scale.x = -1;
   ninja.vel.y = 0;
+
+  spelunky.changeAni('walkRight');
+  spelunky.vel.x = -1;
+  spelunky.scale.x = -1;
+  spelunky.vel.y = 0;
 }
 
 function walkRight()
@@ -133,6 +156,11 @@ function walkRight()
   ninja.vel.x = 1;  
   ninja.scale.x = 1;
   ninja.vel.y = 0;
+
+  spelunky.changeAni('walkRight');
+  spelunky.vel.x = 1;  
+  spelunky.scale.x = 1;
+  spelunky.vel.y = 0;
 }
 
 function walkUp()
@@ -144,4 +172,8 @@ function walkUp()
   ninja.changeAni('walkUp');
   ninja.vel.y = -1;
   ninja.vel.x = 0;
+
+  spelunky.changeAni('walkUp');
+  spelunky.vel.y = -1;
+  spelunky.vel.x = 0;
 }
