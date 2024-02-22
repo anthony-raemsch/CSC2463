@@ -1,6 +1,6 @@
 function setup()
 {
-  createCanvas(400, 400);
+  createCanvas(2519, 1338);
 
   let button1 = createButton('Popcorn Maker');
   button1.position(85, 150);
