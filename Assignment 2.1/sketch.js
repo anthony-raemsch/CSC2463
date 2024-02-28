@@ -1,50 +1,42 @@
-let sounds = Tone.Players
+let soundFX, button1, button2, button3, button4, pitchSlider;
+
+let sounds = new Tone.Players
 ({
-  'birb' : "assets/birb.mp3",
-  'cat' : "assets/cat.mp3",
-  'guinea-pig' : "assets/guinea-pig.mp3",
-  'horse' : "assets/horse.mp3"
+  'birb' : 'assets/brib.mp3',
+  'cat' : 'assets/cat.mp3',
+  'guinea pig' : 'assets/guinea-pig.mp3',
+  'horse' : 'assets/horse.mp3'
 });
 
-let delAmt = new Tone.FeedbackDelay("8n", 0.5);
-let distAmt = new Tone.Distortion(0.5);
+let shift = new Tone.PitchShift();
 
-let button1, button2, button3, button4, delaySlider;
-
-sounds.connect(delAmt);
-delAmt.connect(distAmt);
-delAmt.toDestination();
+shift.pitch = 0;
+let soundNames = ['birb', 'cat', 'guinea pig', 'horse'];
+let buttons = [];
+sounds.connect(shift);
+shift.toDestination();
 
 function setup()
 {
   createCanvas(2519, 1338);
 
-  button1 = createButton('Bird Singing');
-  button1.position(85, 150);
-  button1.mousePressed(() => sounds.player('birb').start());
+  textAlign(CENTER);
+  fill(0);
 
-  button2 = createButton('Cat Meowing');
-  button2.position(85, 150);
-  button2.mousePressed(() => sounds.player('cat').start());
+  soundNames.forEach((names, index) =>
+  {
+    buttons[index] = createButton(names);
+    buttons[index].position(120, 100 + index * 50);
+    buttons[index].mousePressed(() => sounds.player(names).start());
+  })
 
-  button3 = createButton('Pig snorting');
-  button3.position(85, 150);
-  button3.mousePressed(() => sounds.player('guinea-pig').start());
-
-  button4 = createButton('Horse Sniffing');
-  button4.position(85, 150);
-  button4.mousePressed(() => sounds.player('horse').start());
-
-  delaySlider = createSlider(0, 1, 0, 0.05);
-  delaySlider.position(120, 200);
-  delaySlider.mouseMoved(() => delAmt.delayTime.value = delaySlider.value());
-
-  distSlider = createSlider(0, 0.9, 0, 0.05);
-  distSlider.position(120, 300);
-  distSlider.mouseMoved(() => distAmt.distortion = distSlider.value());
+  pitchSlider = createSlider(-12, 12, 0, 0.1);
+  pitchSlider.position(300, 200);
+  text("Pitch Slider", 300, 185);
+  pitchSlider.mouseMoved(() => shift.pitch = pitchSlider.value());
 }
 
 function draw()
 {
-  background(0);
+  background(255);
 }

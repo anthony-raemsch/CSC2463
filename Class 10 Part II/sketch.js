@@ -1,4 +1,4 @@
-let synth = new touchEnded.PolySynth(Tone.Synth);
+let synth = new Tone.PolySynth(Tone.Synth);
 let bend = new Tone.PitchShift();
 
 bend.pitch = 0;
@@ -33,14 +33,14 @@ function setup()
 
 function draw()
 {
-  background(220);
-  text('Play A-K for synth', 200, 200);
+  background(100, 220, 150);
+  text('Play A-K for synth', 140, 180);
 }
 
 function keyPressed()
 {
   let playNotes = notes[key];
-  synth.triggerAttack(playNotes, 0.2);
+  synth.triggerAttack(playNotes);
 }
 
 function keyReleased()
