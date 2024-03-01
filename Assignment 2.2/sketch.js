@@ -42,5 +42,5 @@ function draw()
 function keyPressed()
 {
   let playNotes = notes[key];
-  synth.triggerAttackRelease(playNotes);
+  synth.triggerAttackRelease(playNotes, "8n");
 }
