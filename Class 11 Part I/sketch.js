@@ -4,7 +4,7 @@ let bend = new Tone.PitchShift();
 let mySelect;
 
 bend.pitch = 0;
-synth1.connect(bend);
+synth.connect(bend);
 bend.toDestination();
 
 synth2.connect(bend);
