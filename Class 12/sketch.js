@@ -1,96 +1,39 @@
-let sine = new Tone.Synth
-({
-  oscillator:
-  {
-    type: 'sine'
-  },
+let noise = new Tone.Noise("black");
+let filter = new Tone.Filter(100, "bandpass");
 
-  envelope:
-  {
-    attack: 0.1,
-    decay: 0.1,
-    sustain: 0.1,
-    release: 0.1,
-  }
-}).toDestination();
-
-let square = new Tone.Synth
-({
-  oscillator:
-  {
-    type: 'square'
-  },
-
-  envelope:
-  {
-    attack: 0.1,
-    decay: 0.1,
-    sustain: 0.1,
-    release: 0.1,
-  }
-}).toDestination();
-
-let triangle = new Tone.Synth
-({
-  oscillator:
-  {
-    type: 'triangle'
-  },
-
-  envelope:
-  {
-    attack: 0.1,
-    decay: 0.1,
-    sustain: 0.1,
-    release: 0.1,
-  }
-}).toDestination();
-
-let saw = new Tone.Synth
-({
-  oscillator:
-  {
-    type: 'saw'
-  },
-
-  envelope:
-  {
-    attack: 0.1,
-    decay: 0.1,
-    sustain: 0.1,
-    release: 0.1,
-  }
-}).toDestination();
-
-function setup()
-{
-  createCanvas(400, 400);
-}
+noise.coonect(filter);
+filter.toDestination();
 
 function keyPressed()
 {
   if (key === 'q')
   {
-    sine.TriggerAttackRelease('C4', 1);
+    noise.start();
+    filter.frequency.rampTo(10000, 10);
   }
 
   else if (key === 'w')
   {
-    square.TriggerAttackRelease('C4', 1);
+    noise.stop();
+    filter.frequency.value = 100;
   }
+}
 
-  else if (key === 'e')
-  {
-    triangle.TriggerAttackRelease('C4', 1);
-  }
+function setup()
+{
+  createCanvas(400, 400);
 
-  else if (key === 'r')
+  filterSlider = createSlider(100, 10000, 100, 0.1);
+  filterSlider.position(100, 200);
+  filterSlider.mouseMoved(() =>
   {
-    saw.TriggerAttackRelease('C4', 1);
-  }
+    filter.frequency.value = filterSlider.value();
+  });
 }
 
 function draw()
 {
-  background(250, 220)
+  background(255);
+  text("Press Q to start and W to stop", 100, 100);
+  text("Use slider for filter", 100, 175);
 }
