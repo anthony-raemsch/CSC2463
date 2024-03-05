@@ -26,7 +26,7 @@ let notes =
 
 function setup()
 {
-  createCanvas(2519, 1339);
+  createCanvas(2500, 1339);
 
   pitchSlider = createSlider(-12, 12, 0, 0.1);
   pitchSlider.position(width / 2, height / 2);
@@ -42,5 +42,5 @@ function draw()
 function keyPressed()
 {
   let playNotes = notes[key];
-  synth.triggerAttackRelease(playNotes, "8n");
+  synth.triggerAttackRelease(playNotes, "4n");
 }
