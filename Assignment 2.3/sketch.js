@@ -17,5 +17,5 @@ function preload()
 
 function mousePressed()
 {
-  
+  image(firetruck, 0, 0, width / 2, height / 2);
 }
