@@ -1,9 +1,21 @@
+let firetruck;
+
 function setup()
 {
-  createCanvas(2500, 1339);
+  createCanvas(2519, 1339);
 }
 
 function draw()
 {
-  background(212, 100, 16);
+  background(40, 106, 58);
+}
+
+function preload()
+{
+  firetruck = loadImage('assets/fire truck.jpg');
+}
+
+function mousePressed()
+{
+  
 }
