@@ -1,5 +1,5 @@
 let noise = new Tone.Noise("black");
-let filter = new Tone.Filter(100, "bandpass");
+let filter = new Tone.Filter(100, "lowpass");
 
 noise.coonect(filter);
 filter.toDestination();
