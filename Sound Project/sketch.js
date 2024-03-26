@@ -43,8 +43,13 @@ function draw()
     }
 }
 
-function mouseClicked()
+function mousePressed()
 {
+    if (mouseX > sizeOfSquare && mouseX < width && mouseY > 0 && mouseY < height)
+    {
+        drawing = true;
+    }
+
     if (mouseX > 10 && mouseX < sizeOfSquare + 10 && mouseY > 0 && mouseY < colorSpectrum.length * sizeOfSquare)
     {
         drawing = false;
@@ -53,15 +58,8 @@ function mouseClicked()
         Tone.start();
         melody.start();
     }
-}
 
-function mousePressed()
-{
-    if (mouseX > sizeOfSquare && mouseX < width && mouseY > 0 && mouseY < height)
-    {
-        drawing = true;
-        nature.player('nature').start();
-    }
+    nature.player('nature').start();
 }
 
 function mouseReleased()
